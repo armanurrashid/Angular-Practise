@@ -1,0 +1,102 @@
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow rounded-4">
+                <div class="card-body p-4">
+                    <h3 class="card-title mb-4 text-center">Registration Form</h3>
+                    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="row g-3 needs-validation" novalidate>
+                        <div class="col-md-6">
+                            <label class="form-label">First name</label>
+                            <input type="text" [(ngModel)]="studentObj.firstName" name="firstName" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Last name</label>
+                            <input type="text" class="form-control" [(ngModel)]="studentObj.lastName" name="lastName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text">&#64;</span>
+                                <input type="text" [(ngModel)]="studentObj.userName" name="userName" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">City</label>
+                            <input type="text" [(ngModel)]="studentObj.city" name="city" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">State</label>
+                            <select [(ngModel)]="studentObj.state" name="state" class="form-select" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Gulshan</option>
+                                <option>Mohakhali</option>
+                                <option>Rampura</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Zip</label>
+                            <input type="text" [(ngModel)]="studentObj.zipCode" name="zipCode" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" [(ngModel)]="studentObj.isAcceptTerms" name="isAcceptTerms" type="checkbox" value="" required>
+                                <label class="form-check-label" for="invalidCheck">
+                                    Agree to terms and conditions
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button class="btn btn-primary px-5" type="submit">Submit Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5" *ngIf="formValue">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-4">
+                    <h3 class="card-title mb-4 text-center text-primary">Submitted Info</h3>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>First Name:</strong>
+                            <span>{{ formValue?.firstName }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>Last Name:</strong>
+                            <span>{{ formValue?.lastName }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>Username:</strong>
+                            <span>{{ formValue?.userName }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>City:</strong>
+                            <span>{{ formValue?.city }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>State:</strong>
+                            <span>{{ formValue?.state }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>Zip Code:</strong>
+                            <span>{{ formValue?.zipCode }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <strong>Accepted Terms:</strong>
+                            <span>
+                                <span class="badge py-2"
+                                    [ngClass]="formValue?.isAcceptTerms ? 'bg-success' : 'bg-danger'">
+                                    {{ formValue?.isAcceptTerms ? 'Yes' : 'No' }}
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
