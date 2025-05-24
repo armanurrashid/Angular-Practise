@@ -1,7 +1,7 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule , FormControl, Validators} from '@angular/forms';
-
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 @Component({
   selector: 'app-reactive-form',
   imports: [ReactiveFormsModule,JsonPipe, CommonModule ],
@@ -10,8 +10,8 @@ import { FormGroup, ReactiveFormsModule , FormControl, Validators} from '@angula
 })
 export class ReactiveFormComponent {
 studentForm: FormGroup = new FormGroup({
-firstName: new FormControl('',[Validators.required,Validators.minLength(4)]),
-lastName: new FormControl('',[Validators.required,Validators.minLength(4)]),
+firstName: new FormControl('',[Validators.required,Validators.minLength(4,),onlyAlphabetsValidator]),
+lastName: new FormControl('',[Validators.required,Validators.minLength(4),onlyAlphabetsValidator]),
 userName: new FormControl('',),
 city: new FormControl(''),
 state: new FormControl(''),
@@ -24,4 +24,13 @@ formValue:any;
 onSave(){
   this.formValue = this.studentForm.value;
 }
+
+}
+export function onlyAlphabetsValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+  const alphabetRegex = /^[A-Za-z]+$/;
+  if (value && !alphabetRegex.test(value)) {
+    return { onlyAlphabets: true };
+  }
+  return null;
 }

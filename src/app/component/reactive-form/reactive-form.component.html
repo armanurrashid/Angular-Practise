@@ -8,15 +8,20 @@
                         <div class="col-md-6">
                             <label class="form-label">First name</label>
                             <input type="text" class="form-control" formControlName="firstName" required>
-                            <div class="text-danger">
-                                @if (studentForm.controls['firstName'].touched && studentForm.controls['firstName'].errors?.['required']){<span>This is required</span> } @else if (studentForm.controls['firstName'].touched && studentForm.controls['firstName'].errors?.['minlength']){<span>Minimum length is 4</span>}
+                            <div class="text-danger" *ngIf="studentForm.controls['firstName'].touched">
+                                <span *ngIf="studentForm.controls['firstName'].errors?.['required']">This is required</span>
+                                <span *ngIf="studentForm.controls['firstName'].errors?.['minlength']">Minimum length is 4</span>
+                                <span *ngIf="studentForm.controls['firstName'].errors?.['onlyAlphabets']">Only alphabets are allowed</span>
                             </div>
+
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Last name</label>
                             <input type="text" class="form-control" formControlName="lastName" required>
-                            <div class="text-danger">
-                                @if (studentForm.controls['lastName'].touched && studentForm.controls['lastName'].errors?.['required']){<span>This is required</span> } @else if (studentForm.controls['lastName'].touched && studentForm.controls['lastName'].errors?.['minlength']){<span>Minimum length is 4</span>}
+                            <div class="text-danger" *ngIf="studentForm.controls['lastName'].touched">
+                                <span *ngIf="studentForm.controls['lastName'].errors?.['required']">This is required</span>
+                                <span *ngIf="studentForm.controls['lastName'].errors?.['minlength']">Minimum length is 4</span>
+                                <span *ngIf="studentForm.controls['lastName'].errors?.['onlyAlphabets']">Only alphabets are allowed</span>
                             </div>
                         </div>
                         <div class="col-md-6">
